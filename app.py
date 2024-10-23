@@ -14,8 +14,25 @@ def calc_combinations(n, r):
     return (factorial)(n) // ((factorial)(r) * (factorial)(n - r))
 
 def main():
-    n = int(input("Enter the total number of items (n): "))
-    r = int(input("Enter the items to be chosen or arranged (r): "))
+    while True:
+        try:
+            n = int(input("Enter the total number of items (n): "))
+            if n < 0:
+                raise ValueError("Please enter a non-negative integer for n.")
+            break 
+        except ValueError as e:
+            print(e)  
+
+    while True:
+        try:
+            r = int(input("Enter the items to be chosen or arranged (r): "))
+            if r < 0:
+                raise ValueError("Please enter a non-negative integer for r.")
+            if r > n:
+                raise ValueError("r cannot be greater than n.")
+            break  
+        except ValueError as e:
+            print(e)  
 
     permutations = calc_permutations(n, r)
     combinations = calc_combinations(n, r)
